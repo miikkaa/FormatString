@@ -7,10 +7,11 @@
     var PF = window.PF = window.PF || {};
 
     PF.MessageBuilder = function (string, args) {
-        for (var i = 0; i < args.length; i++) {
-            string = string.replace(new RegExp('\\{' + i + '\\}', 'g'), args[i]);
-        }
-        return string;
+        // Run a global match.
+        if (!args) { args = []; }
+        return string.replace(/{(\d+)}/g, function(match, index) {
+            return typeof args[index] !== 'undefined' ? args[index] : match;
+        });
     };
 
 })(window);
