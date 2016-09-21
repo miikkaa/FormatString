@@ -9,7 +9,7 @@
     PF.MessageBuilder = function (string, args) {
         // Run a global match.
         if (!args) { args = []; }
-        return string.replace(/{(\d+)}/g, function(match, index) {
+        return string.replace(/{(\d+)}/g, function (match, index) {
             return typeof args[index] !== 'undefined' ? args[index] : match;
         });
     };
